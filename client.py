@@ -1,5 +1,6 @@
-import time
 import json
+import time
+from datetime import datetime
 import paho.mqtt.client as mqtt
 
 from models.Sensor import Sensor
@@ -27,8 +28,13 @@ if __name__ == "__main__":
         values_data = {
             "humidity_value": humidity_sensor.read_value(),
             "temperature_value": temperature_sensor.read_value(),
-            "ph_value": ph_sensor.read_value(),
+            "ph_value": int(ph_sensor.read_value()),
+            "date_hour": datetime.now().strftime("%d/%m/%Y\n%H:%M:%S"),
         }
+
+        values_data["temperature_str"] = "{:.2f}".format(values_data["temperature_value"])
+        values_data["status_irr"] = 1 if values_data["humidity_value"] < 0.32 else 0
+        values_data["msg_irr"] = "Irrigador\nAtivado" if values_data["status_irr"] == 1 else "Irrigador\nDesativado"
 
         json_to_send = __create_json_to_send(values_data)
 
@@ -36,5 +42,5 @@ if __name__ == "__main__":
         mqtt_client.publish(topic=MQTT_TOPIC, payload=json_to_send)
         print(f"The json {json_to_send} was published")
 
-        time.sleep(1)
+        time.sleep(5)
 
