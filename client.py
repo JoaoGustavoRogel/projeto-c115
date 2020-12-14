@@ -21,7 +21,7 @@ if __name__ == "__main__":
     # Creating Sensors
     humidity_sensor = Sensor(name="Humidity", bounds=(0, 1))
     temperature_sensor = Sensor(name="Temperature", bounds=(-10, 85), gauss=True, mean=30, sigma=5)
-    ph_sensor = Sensor(name="Humidity", bounds=(0, 14), integer=True)
+    ph_sensor = Sensor(name="Ph", bounds=(0, 14), integer=True)
 
     # Main loop
     while 42:
