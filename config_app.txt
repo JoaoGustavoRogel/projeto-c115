@@ -11,10 +11,10 @@ inatel/c115/plant_project
 $.temperature_str
 
 # Sensor Umidade
-$.humidity_str
+$.humidity_value
 
 # Sensor pH
-$.ph_str
+$.ph_value
 
 # Sensor pH
 $.date_hour

@@ -28,15 +28,13 @@ if __name__ == "__main__":
         values_data = {
             "humidity_value": humidity_sensor.read_value(),
             "temperature_value": temperature_sensor.read_value(),
-            "ph_value": ph_sensor.read_value(),
+            "ph_value": int(ph_sensor.read_value()),
             "date_hour": datetime.now().strftime("%d/%m/%Y\n%H:%M:%S"),
         }
 
+        values_data["temperature_str"] = "{:.2f}".format(values_data["temperature_value"])
         values_data["status_irr"] = 1 if values_data["humidity_value"] < 0.32 else 0
         values_data["msg_irr"] = "Irrigador\nAtivado" if values_data["status_irr"] == 1 else "Irrigador\nDesativado"
-        values_data["humidity_str"] = "{:.2f}%".format(values_data["humidity_value"]*100)
-        values_data["temperature_str"] = "{:.2f}°C".format(values_data["temperature_value"])
-        values_data["ph_str"] = "{:d}".format(values_data["ph_value"])
 
         json_to_send = __create_json_to_send(values_data)
 
