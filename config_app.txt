@@ -1,0 +1,26 @@
+# Endereço
+test.mosquitto.org
+
+# Port
+1883
+
+# Tópico
+inatel/c115/plant_project
+
+# Sensor Temperatura
+$.temperature_str
+
+# Sensor Umidade
+$.humidity_str
+
+# Sensor pH
+$.ph_str
+
+# Sensor pH
+$.date_hour
+
+# Botão Irrigador
+$.status_irr
+
+# Status Irrigador
+$.msg_irr
